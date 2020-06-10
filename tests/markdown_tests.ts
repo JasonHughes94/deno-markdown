@@ -109,13 +109,25 @@ Deno.test('Generates a paragraph of text after the header', () => {
   assertEquals('# My Header\n\nThis is a paragraph of text under the header\n\n', markdown.content);
 });
 
-Deno.test('Generates a inline code  block', () => {
+Deno.test('Generates a code block with js highlighting', () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
-  markdown.inlineCode('console.log(\'Hello World\')')
+  markdown.codeBlock('console.log(\'Hello World\')', 'javascript')
 
   //Assert
-  assertEquals('`console.log(\'Hello World\')`', markdown.content);
+  assertEquals('```javascript\nconsole.log(\'Hello World\')\n```\n\n', markdown.content);
+});
+
+Deno.test('Generates a code block with js highlighting', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown
+    .taskList(['Task 1', 'Task 2']);
+
+  //Assert
+  assertEquals('- [] Task 1\n- [] Task 2\n\n', markdown.content);
 });

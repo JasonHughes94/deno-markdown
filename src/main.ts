@@ -80,11 +80,28 @@ export class Markdown {
   }
 
   /**
-  * Adds a inline code block to the content
-  * @param text content you wish to be made inline
+  * Adds a code block to the content
+  * @param code code you wish to be added
+  * @param language determines the syntax highlighting for the code
   */
-  inlineCode(text: string): this {
-    this.content += `\`${text}\``;
+  codeBlock(code: string, language: string = ''): this {
+    this.content += `\`\`\`${language}\n${code}\n\`\`\`\n\n`;
+
+    return this;
+  }
+
+  taskList(tasks: string[]): this {
+
+    if (tasks.length === 0)
+      throw new Error('Please ensure there is at least 1 task');
+
+    for (let i = 0; i < tasks.length; i++) {
+      const task = tasks[i];
+      this.content += `- [] ${task}\n`;
+    }
+
+    this.content += '\n'
+
     return this;
   }
 
