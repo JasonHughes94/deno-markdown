@@ -80,6 +80,15 @@ export class Markdown {
   }
 
   /**
+  * Adds a inline code block to the content
+  * @param text content you wish to be made inline
+  */
+  inlineCode(text: string): this {
+    this.content += `\`${text}\``;
+    return this;
+  }
+
+  /**
   * Writes the content to a markdown file you do not need to supply a .md
   * @param path Location you wish to create the file
   * @param fileName The name of the file

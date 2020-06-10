@@ -108,3 +108,14 @@ Deno.test('Generates a paragraph of text after the header', () => {
   //Assert
   assertEquals('# My Header\n\nThis is a paragraph of text under the header\n\n', markdown.content);
 });
+
+Deno.test('Generates a inline code  block', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown.inlineCode('console.log(\'Hello World\')')
+
+  //Assert
+  assertEquals('`console.log(\'Hello World\')`', markdown.content);
+});
