@@ -84,3 +84,14 @@ Deno.test('Test chaining', () => {
   //Assert
   assertEquals('# Header\n1. Item 1\n2. Item 2\n', markdown.content);
 });
+
+Deno.test('Generate a quoted string', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown.quote('My Quote');
+
+  //Assert
+  assertEquals('> My Quote\n', markdown.content);
+});

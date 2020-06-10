@@ -1,5 +1,6 @@
 import { ListTypes } from "./enums/list_types.ts";
 
+/** Create Markdown content and files. */
 export class Markdown {
 
   content: string;
@@ -20,12 +21,13 @@ export class Markdown {
 
     const markdownHeaderCharacter = '#';
 
-    this.content += `${markdownHeaderCharacter.repeat(value)} ${text}\n`;
+    this.content += `${markdownHeaderCharacter.repeat(value)} ${text}\n\n`;
     return this;
   }
 
+  //TODO: Add sub lists
   /**
-  * Returns a markdown header string from 1-6
+  * Returns an markdown list either ordered or unordered
   * @param textArray Array of items to bue put into a list
   * @param listType Ordered or Unordered list defaults to unordered
   * @param character Desired character for unordered list defaults to `-`
@@ -43,6 +45,7 @@ export class Markdown {
         this.content += `${i + 1}. ${item}\n`;
       }
 
+      this.content += '\n';
       return this;
     } else if (listType === ListTypes.UnOrdered) {
 
@@ -51,9 +54,33 @@ export class Markdown {
         this.content += `${character} ${item}\n`
       }
 
+      this.content += '\n';
       return this;
     }
 
     return this;
+  }
+
+  /**
+  * Returns a markdown quote
+  * @param text content you wish to be quoted
+  */
+  quote(text: string): this {
+    this.content += `> ${text}\n\n`;
+    return this;
+  }
+
+  /**
+  * Writes the content to a markdown file you do not need to supply a .md
+  * @param path Location you wish to create the file
+  * @param fileName The name of the file
+  * @param content The content you wish to write to the file. This defaults to the chained content
+  */
+  async write(path: string, fileName: string, content: string = this.content) {
+    const file = await Deno.create(`${path}${fileName}.md`);
+    const encoder = new TextEncoder();
+    const data = encoder.encode(content);
+    await Deno.write(file.rid, data); // 11
+    Deno.close(file.rid);
   }
 }
