@@ -40,19 +40,17 @@ export class Markdown {
 
     if (listType === ListTypes.Ordered) {
 
-      for (let i = 0; i < textArray.length; i++) {
-        const item = textArray[i];
-        this.content += `${i + 1}. ${item}\n`;
-      }
+      textArray.map((item, index) => {
+        this.content += `${index + 1}. ${item}\n`;
+      });
 
       this.content += '\n';
       return this;
     } else if (listType === ListTypes.UnOrdered) {
 
-      for (let i = 0; i < textArray.length; i++) {
-        const item = textArray[i];
+      textArray.map((item) => {
         this.content += `${character} ${item}\n`
-      }
+      })
 
       this.content += '\n';
       return this;
@@ -95,10 +93,9 @@ export class Markdown {
     if (tasks.length === 0)
       throw new Error('Please ensure there is at least 1 task');
 
-    for (let i = 0; i < tasks.length; i++) {
-      const task = tasks[i];
+    tasks.map(task => {
       this.content += `- [] ${task}\n`;
-    }
+    });
 
     this.content += '\n'
 
