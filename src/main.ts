@@ -10,7 +10,7 @@ export class Markdown {
   }
 
   /**
-  * Returns a markdown header string from 1-6
+  * Adds a markdown header string from 1-6 to the content
   * @param text Header text
   * @param value Header weight e.g 1-6
   */
@@ -27,7 +27,7 @@ export class Markdown {
 
   //TODO: Add sub lists
   /**
-  * Returns an markdown list either ordered or unordered
+  * Adds an markdown list either ordered or unordered to the content
   * @param textArray Array of items to bue put into a list
   * @param listType Ordered or Unordered list defaults to unordered
   * @param character Desired character for unordered list defaults to `-`
@@ -62,11 +62,20 @@ export class Markdown {
   }
 
   /**
-  * Returns a markdown quote
+  * Adds a markdown quote to the content
   * @param text content you wish to be quoted
   */
   quote(text: string): this {
     this.content += `> ${text}\n\n`;
+    return this;
+  }
+
+  /**
+  * Adds a paragraph of text to the content
+  * @param text content you wish to be written out
+  */
+  paragraph(text: string): this {
+    this.content += `${text}\n\n`
     return this;
   }
 
