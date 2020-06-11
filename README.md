@@ -2,6 +2,8 @@
 
 Create markdown files or snippets using deno 🦕
 
+![ci](https://github.com/JasonHughes94/deno-markdown/workflows/ci/badge.svg)
+
 ## Usage
 
 ### Basic example
