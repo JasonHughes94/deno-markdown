@@ -1,5 +1,5 @@
 import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
-import { Markdown, italics, bold } from "../mod.ts";
+import { Markdown, italics, bold, strike } from "../mod.ts";
 
 //Italics tests
 Deno.test('Generates a string with italics syntax using the defaults', () => {
@@ -63,4 +63,23 @@ Deno.test('Generates an bold string inline with a paragraph tag', () => {
 
   //Assert
   assertEquals(markdown.content, `This is **inline** bold\n\n`);
+});
+
+//Strike tests
+Deno.test('Generates a string with a strike through it', () => {
+  //Arrange
+  const content = strike("strike")
+
+  //Assert
+  assertEquals(content, '~~strike~~');
+});
+
+Deno.test('Generates an strike inline with a paragraph tag', () => {
+  //Arrange
+  var markdown = new Markdown();
+  markdown
+    .paragraph("This is " + strike("strike") + " bold");
+
+  //Assert
+  assertEquals(markdown.content, `This is ~~strike~~ bold\n\n`);
 });

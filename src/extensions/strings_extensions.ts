@@ -27,3 +27,12 @@ export function bold(text: string, style: string = '**'): string {
 
   return style + text + style;
 }
+
+/**
+* Creates a string with a strike through
+* @param text The text you wish to be have a strike through
+* @returns {string} A string value with strike markdown characters on both sides
+*/
+export function strike(text: string): string {
+  return '~~' + text + '~~';
+}
