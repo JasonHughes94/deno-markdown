@@ -113,7 +113,7 @@ export class Markdown {
   * @param options optional options for styling the table
   */
   table(tableContent: any, options: any = {}): this {
-    var table = tableBuilder(tableContent, options);
+    let table = tableBuilder(tableContent, options);
 
     this.content += table + '\n\n';
     return this;
@@ -122,8 +122,13 @@ export class Markdown {
   /**
   * Adds a markdown horizontal rule
   */
-  horizontalRule(): this {
-    this.content += '---\n\n'
+  horizontalRule(style: string = '---'): this {
+    const markdownHorizontalRuleCharacters = ['---', '***', '___']
+
+    if (!markdownHorizontalRuleCharacters.includes(style))
+      throw new Error('Please use the correct markdown characters for horizontal rules');
+
+    this.content += `${style}\n\n`
     return this;
   }
 

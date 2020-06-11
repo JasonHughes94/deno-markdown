@@ -174,7 +174,7 @@ Deno.test('Generates table with no options', () => {
 });
 
 //Horizontal rule tests
-Deno.test('Generates a code block with js highlighting', () => {
+Deno.test('Generates a horizontal rule using the defaults', () => {
   //Arrange
   let markdown = new Markdown();
 
@@ -184,5 +184,29 @@ Deno.test('Generates a code block with js highlighting', () => {
 
   //Assert
   assertEquals(markdown.content, '---\n\n');
+});
+
+Deno.test('Generates a horizontal rule using the *** syntax', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown
+    .horizontalRule('***');
+
+  //Assert
+  assertEquals(markdown.content, '***\n\n');
+});
+
+Deno.test('Generates a horizontal rule using the ___ syntax', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown
+    .horizontalRule('___');
+
+  //Assert
+  assertEquals(markdown.content, '___\n\n');
 });
 
