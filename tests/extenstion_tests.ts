@@ -1,6 +1,7 @@
 import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
-import { Markdown, italics } from "../mod.ts";
+import { Markdown, italics, bold } from "../mod.ts";
 
+//Italics tests
 Deno.test('Generates a string with italics syntax using the defaults', () => {
   //Arrange
   const content = italics("I am in italics")
@@ -30,4 +31,36 @@ Deno.test('Generates an italic string inline with a paragraph tag', () => {
 
   //Assert
   assertEquals(markdown.content, `This is *inline* italics\n\n`);
+});
+
+//Bold tests
+Deno.test('Generates a string with bold syntax using the defaults', () => {
+  //Arrange
+  const content = bold("I am in bold")
+
+  //Assert
+  assertEquals(content, '**I am in bold**');
+});
+
+Deno.test('Generates a string with bold syntax using the __ character', () => {
+  //Arrange
+  const content = bold("I am in bold", '__')
+
+  //Assert
+  assertEquals(content, '__I am in bold__');
+});
+
+Deno.test('Throws an error if an invalid character is supplied', () => {
+  //Assert
+  assertThrows(() => bold("I am in bold", '*_*'));
+});
+
+Deno.test('Generates an bold string inline with a paragraph tag', () => {
+  //Arrange
+  var markdown = new Markdown();
+  markdown
+    .paragraph("This is " + bold("inline") + " bold");
+
+  //Assert
+  assertEquals(markdown.content, `This is **inline** bold\n\n`);
 });

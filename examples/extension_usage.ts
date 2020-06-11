@@ -1,14 +1,17 @@
-import { Markdown, italics } from "../mod.ts";
+import { Markdown, italics, bold } from "../mod.ts";
 
-//Inline italics
+//Inline extensions
 var markdown = new Markdown();
 markdown
-  .paragraph("This is " + italics("inline", '*') + " italics");
+  .paragraph("This is " + italics("inline", '*') + " italics")
+  .paragraph("This is " + bold("inline") + " bold")
 
+//Stand alone extension
+var italicText = italics('italics');
+var boldText = bold('bold');
 
-//Stand alone italics
-var italicText = italics('Italics');
 
 console.log(markdown.content);
 console.log('--------------')
 console.log(italicText);
+console.log(boldText);
