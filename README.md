@@ -9,7 +9,7 @@ Create markdown files or snippets using deno 🦕
 ### Basic example
 
 ```javascript
-import { Markdown, ListTypes } from 'ADD DENO URL ONCE MERGED';
+import { Markdown, ListTypes } from 'https://deno.land/x/deno_markdown/mod.ts';
 
 let markdown = new Markdown();
 
@@ -24,7 +24,7 @@ console.log(markdown.content);
 ### Write out to a markdown file
 
 ```javascript
-import { Markdown, ListTypes } from 'ADD DENO URL ONCE MERGED';
+import { Markdown, ListTypes } from 'https://deno.land/x/deno_markdown/mod.ts';
 
 let markdown = new Markdown();
 
