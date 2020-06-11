@@ -89,6 +89,10 @@ export class Markdown {
     return this;
   }
 
+  /**
+  * Adds a task list to the content
+  * @param tasks an array of tasks you wish to add
+  */
   taskList(tasks: string[]): this {
 
     if (tasks.length === 0)
@@ -103,6 +107,11 @@ export class Markdown {
     return this;
   }
 
+  /**
+  * Adds a markdown table to the  content
+  * @param tableContent The content you wish to be added to the table
+  * @param options optional options for styling the table
+  */
   table(tableContent: any, options: any = {}): this {
     var table = tableBuilder(tableContent, options);
 

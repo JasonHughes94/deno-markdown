@@ -2,3 +2,4 @@
 
 export { ListTypes } from "./src/enums/list_types.ts";
 export { Markdown } from "./src/main.ts";
+export * from "./src/extensions/strings_extensions.ts";
