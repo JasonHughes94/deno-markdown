@@ -1,4 +1,5 @@
 import { ListTypes } from "./enums/list_types.ts";
+import tableBuilder from "./table.ts";
 
 /** Create Markdown content and files. */
 export class Markdown {
@@ -99,6 +100,13 @@ export class Markdown {
 
     this.content += '\n'
 
+    return this;
+  }
+
+  table(tableContent: any, options: any = {}): this {
+    var table = tableBuilder(tableContent, options);
+
+    this.content += table + '\n\n';
     return this;
   }
 

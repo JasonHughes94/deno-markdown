@@ -1,4 +1,4 @@
-import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
+import { assertEquals, assertThrows, assertStringContains } from "https://deno.land/std/testing/asserts.ts";
 import { Markdown, ListTypes } from '../mod.ts';
 
 Deno.test('Generates a string with markdown header', () => {
@@ -130,4 +130,24 @@ Deno.test('Generates a code block with js highlighting', () => {
 
   //Assert
   assertEquals('- [] Task 1\n- [] Task 2\n\n', markdown.content);
+});
+
+Deno.test('Generates table with no options', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown
+    .table([
+      ['Branch', 'Commit'],
+      ['master', '0123456789abcdef'],
+      ['staging', 'fedcba9876543210']
+    ]);
+
+  //Assert
+  assertEquals(markdown.content, `| Branch  | Commit           |
+| ------- | ---------------- |
+| master  | 0123456789abcdef |
+| staging | fedcba9876543210 |\n
+`);
 });
