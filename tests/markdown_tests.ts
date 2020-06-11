@@ -185,3 +185,4 @@ Deno.test('Generates a code block with js highlighting', () => {
   //Assert
   assertEquals(markdown.content, '---\n\n');
 });
+

@@ -36,3 +36,15 @@ export function bold(text: string, style: string = '**'): string {
 export function strike(text: string): string {
   return '~~' + text + '~~';
 }
+
+/**
+* Creates a markdown image block
+* @param altText The alt text of the image
+* @param link Link to the image
+* @param inline Inline style or reference style
+* @returns {string} Markdown block with alt text and image link
+*/
+export function image(altText: string, link: string, inline: boolean = true): string {
+
+  return inline ? `![${altText}](${link})\n` : `![${altText}][image]\n[image]: ${link}\n`
+}

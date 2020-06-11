@@ -1,4 +1,4 @@
-import { Markdown, italics, bold, strike } from "../mod.ts";
+import { Markdown, italics, bold, strike, image } from "../mod.ts";
 
 //Inline extensions
 var markdown = new Markdown();
@@ -6,14 +6,21 @@ markdown
   .paragraph("This is " + italics("inline", '*') + " italics")
   .paragraph("This is " + bold("inline") + " bold")
   .paragraph("This is " + strike("inline") + " strike")
+  .paragraph("This is " + italics("Nested " + bold("bold")) + " inline")
 
 //Stand alone extension
 var italicText = italics('italics');
 var boldText = bold('bold');
 var strikeText = strike('strike');
+var nestedBoldTest = italics("Nested " + bold("bold"));
+var imageText = image('alt', 'link');
 
 console.log(markdown.content);
 console.log(italicText);
 console.log(boldText);
 console.log(strikeText);
+console.log(nestedBoldTest);
+console.log(imageText);
+
+
 

@@ -1,5 +1,5 @@
 import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
-import { Markdown, italics, bold, strike } from "../mod.ts";
+import { Markdown, italics, bold, strike, image } from "../mod.ts";
 
 //Italics tests
 Deno.test('Generates a string with italics syntax using the defaults', () => {
@@ -82,4 +82,21 @@ Deno.test('Generates an strike inline with a paragraph tag', () => {
 
   //Assert
   assertEquals(markdown.content, `This is ~~strike~~ bold\n\n`);
+});
+
+//Image tests
+Deno.test('Generates a image block with inline style', () => {
+  //Arrange
+  var content = image('my image', 'https://link')
+
+  //Assert
+  assertEquals(content, '![my image](https://link)\n');
+});
+
+Deno.test('Generates a image block with reference  style', () => {
+  //Arrange
+  var content = image('my image', 'https://link', false)
+
+  //Assert
+  assertEquals(content, '![my image][image]\n[image]: https://link\n');
 });
