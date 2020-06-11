@@ -4,7 +4,36 @@ Create markdown files or snippets using deno 🦕
 
 ## Usage
 
-//TODO: Add this
+### Basic example
+
+```javascript
+import { Markdown, ListTypes } from 'ADD DENO URL ONCE MERGED';
+
+let markdown = new Markdown();
+
+markdown
+  .header('My Header', 1)
+  .list(['Item 1', 'Item 2'], ListTypes.Ordered)
+  .quote('My Quote');
+
+console.log(markdown.content);
+```
+
+### Write out to a markdown file
+
+```javascript
+import { Markdown, ListTypes } from 'ADD DENO URL ONCE MERGED';
+
+let markdown = new Markdown();
+
+markdown
+  .quote('My Quote')
+  .write('./examples/', 'test');
+```
+
+### Further examples
+
+Please see the files in [the examples folder](./examples/);
 
 ## Running the tests
 
