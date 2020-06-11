@@ -38,11 +38,21 @@ export function strike(text: string): string {
 }
 
 /**
+* Creates a markdown link block
+* @param altText The alt text of the link
+* @param link
+* @returns {string} Markdown block with alt text and a link
+*/
+export function link(altText: string, link: string, title?: string): string {
+  return `[${altText}](${link}${title === undefined ? '' : ' ' + title})\n`;
+}
+
+/**
 * Creates a markdown image block
 * @param altText The alt text of the image
 * @param link Link to the image
 * @returns {string} Markdown block with alt text and image link
 */
-export function image(altText: string, link: string, title?: string): string {
-  return `![${altText}](${link}${title === undefined ? '' : ' ' + title})\n`;
+export function image(altText: string, imageLink: string, title?: string): string {
+  return `!${link(altText, imageLink, title)}`;
 }

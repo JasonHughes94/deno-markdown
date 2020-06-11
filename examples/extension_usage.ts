@@ -13,7 +13,8 @@ var italicText = italics('italics');
 var boldText = bold('bold');
 var strikeText = strike('strike');
 var nestedBoldTest = italics("Nested " + bold("bold"));
-var imageText = image('alt', 'link');
+var imageText = image('alt', 'image');
+var linkText = image('alt', 'link');
 
 console.log(markdown.content);
 console.log(italicText);
@@ -21,6 +22,8 @@ console.log(boldText);
 console.log(strikeText);
 console.log(nestedBoldTest);
 console.log(imageText);
+console.log(linkText);
+
 
 
 
