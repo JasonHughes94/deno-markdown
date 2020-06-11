@@ -37,7 +37,7 @@ Please see the files in [the examples folder](./examples/);
 
 ## Running the tests
 
-To run the tests run `deno test .\tests\markdown_tests.ts`
+To run the tests run `deno test -A`
 
 ## Contributing
 
