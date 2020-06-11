@@ -1,4 +1,12 @@
 /**
+* Creates a block of inline code
+* @param code
+*/
+export function inlineCode(code: string): string {
+  return `\`${code}\``;
+}
+
+/**
 * Creates a string with italics
 * @param text The text you wish to be made italic
 * @param style The style you wish to use for italics defaults to `_`

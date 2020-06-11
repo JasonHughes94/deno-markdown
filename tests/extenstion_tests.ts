@@ -1,5 +1,14 @@
 import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
-import { Markdown, italics, bold, strike, image } from "../mod.ts";
+import { Markdown, italics, bold, strike, image, inlineCode } from "../mod.ts";
+
+//Inline code tests
+Deno.test('Generates a block of inline code', () => {
+  //Arrange
+  const content = inlineCode("var denoIsCool = true")
+
+  //Assert
+  assertEquals(content, '`var denoIsCool = true`');
+});
 
 //Italics tests
 Deno.test('Generates a string with italics syntax using the defaults', () => {
