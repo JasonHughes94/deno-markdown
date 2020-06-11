@@ -26,31 +26,29 @@ export class Markdown {
     return this;
   }
 
-  //TODO: Add sub lists
   /**
   * Adds an markdown list either ordered or unordered to the content
   * @param textArray Array of items to bue put into a list
   * @param listType Ordered or Unordered list defaults to unordered
   * @param character Desired character for unordered list defaults to `-`
   */
-  list(textArray: string[], listType: ListTypes = ListTypes.UnOrdered, character: string = '-'): this {
-    const unorderedListCharacters = ['-', '+', '*'];
-
-    if (!unorderedListCharacters.includes(character))
-      throw new Error("Please supply a valid markdown character for unordered lists");
-
+  list(textArray: string[], listType: ListTypes = ListTypes.UnOrdered, character: string | undefined = '-', subList?: boolean): this {
     if (listType === ListTypes.Ordered) {
 
       textArray.map((item, index) => {
-        this.content += `${index + 1}. ${item}\n`;
+        this.content += `${subList === undefined ? '' : '\t'}${index + 1}. ${item}\n`;
       });
 
       this.content += '\n';
       return this;
     } else if (listType === ListTypes.UnOrdered) {
+      const unorderedListCharacters = ['-', '+', '*'];
+
+      if (!unorderedListCharacters.includes(character))
+        throw new Error("Please supply a valid markdown character for unordered lists");
 
       textArray.map((item) => {
-        this.content += `${character} ${item}\n`
+        this.content += `${subList === undefined ? '' : '\t'}${character} ${item}\n`
       })
 
       this.content += '\n';

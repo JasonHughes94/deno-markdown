@@ -74,6 +74,28 @@ Deno.test('Generates an ordered list', () => {
   assertEquals(markdown.content, '1. Item 1\n2. Item 2\n\n');
 });
 
+Deno.test('Generates an ordered sub list', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown.list(['Item 1', 'Item 2'], ListTypes.Ordered, undefined, true);
+
+  //Assert
+  assertEquals(markdown.content, '\t1. Item 1\n\t2. Item 2\n\n');
+});
+
+Deno.test('Generates an unordered sub list', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown.list(['Item 1', 'Item 2'], ListTypes.UnOrdered, '*', true);
+
+  //Assert
+  assertEquals(markdown.content, '\t* Item 1\n\t* Item 2\n\n');
+});
+
 //Chaining tests
 Deno.test('Test chaining', () => {
   //Arrange
