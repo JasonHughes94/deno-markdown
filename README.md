@@ -21,3 +21,7 @@ Any help is greatly welcome all you need to do it put in a PR with the changes a
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgements 
+
+* **Titus Wormer** - [markdown-table](https://github.com/wooorm/markdown-table)
