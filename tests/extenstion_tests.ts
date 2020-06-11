@@ -85,7 +85,7 @@ Deno.test('Generates an strike inline with a paragraph tag', () => {
 });
 
 //Image tests
-Deno.test('Generates a image block with inline style', () => {
+Deno.test('Generates a image block with inline style and no title', () => {
   //Arrange
   var content = image('my image', 'https://link')
 
@@ -93,10 +93,10 @@ Deno.test('Generates a image block with inline style', () => {
   assertEquals(content, '![my image](https://link)\n');
 });
 
-Deno.test('Generates a image block with reference  style', () => {
+Deno.test('Generates a image block with inline style and a title', () => {
   //Arrange
-  var content = image('my image', 'https://link', false)
+  var content = image('my image', 'https://link', 'My Title')
 
   //Assert
-  assertEquals(content, '![my image][image]\n[image]: https://link\n');
+  assertEquals(content, '![my image](https://link My Title)\n');
 });
