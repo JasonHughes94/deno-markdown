@@ -3,11 +3,10 @@ import tableBuilder from "./table.ts";
 
 /** Create Markdown content and files. */
 export class Markdown {
-
   content: string;
 
   constructor() {
-    this.content = '';
+    this.content = "";
   }
 
   /**
@@ -16,11 +15,11 @@ export class Markdown {
   * @param value Header weight e.g 1-6
   */
   header(text: string, value: number): this {
-
-    if (value > 6)
+    if (value > 6) {
       throw new Error("Header weight can only be between 1-6");
+    }
 
-    const markdownHeaderCharacter = '#';
+    const markdownHeaderCharacter = "#";
 
     this.content += `${markdownHeaderCharacter.repeat(value)} ${text}\n\n`;
     return this;
@@ -32,26 +31,36 @@ export class Markdown {
   * @param listType Ordered or Unordered list defaults to unordered
   * @param character Desired character for unordered list defaults to `-`
   */
-  list(textArray: string[], listType: ListTypes = ListTypes.UnOrdered, character: string | undefined = '-', subList?: boolean): this {
+  list(
+    textArray: string[],
+    listType: ListTypes = ListTypes.UnOrdered,
+    character: string | undefined = "-",
+    subList?: boolean,
+  ): this {
     if (listType === ListTypes.Ordered) {
-
       textArray.map((item, index) => {
-        this.content += `${subList === undefined ? '' : '\t'}${index + 1}. ${item}\n`;
+        this.content += `${subList === undefined ? "" : "\t"}${index +
+          1}. ${item}\n`;
       });
 
-      this.content += '\n';
+      this.content += "\n";
       return this;
     } else if (listType === ListTypes.UnOrdered) {
-      const unorderedListCharacters = ['-', '+', '*'];
+      const unorderedListCharacters = ["-", "+", "*"];
 
-      if (!unorderedListCharacters.includes(character))
-        throw new Error("Please supply a valid markdown character for unordered lists");
+      if (!unorderedListCharacters.includes(character)) {
+        throw new Error(
+          "Please supply a valid markdown character for unordered lists",
+        );
+      }
 
       textArray.map((item) => {
-        this.content += `${subList === undefined ? '' : '\t'}${character} ${item}\n`
-      })
+        this.content += `${
+          subList === undefined ? "" : "\t"
+        }${character} ${item}\n`;
+      });
 
-      this.content += '\n';
+      this.content += "\n";
       return this;
     }
 
@@ -72,7 +81,7 @@ export class Markdown {
   * @param text content you wish to be written out
   */
   paragraph(text: string): this {
-    this.content += `${text}\n\n`
+    this.content += `${text}\n\n`;
     return this;
   }
 
@@ -81,7 +90,7 @@ export class Markdown {
   * @param code code you wish to be added
   * @param language determines the syntax highlighting for the code
   */
-  codeBlock(code: string, language: string = ''): this {
+  codeBlock(code: string, language: string = ""): this {
     this.content += `\`\`\`${language}\n${code}\n\`\`\`\n\n`;
 
     return this;
@@ -92,15 +101,15 @@ export class Markdown {
   * @param tasks an array of tasks you wish to add
   */
   taskList(tasks: string[]): this {
+    if (tasks.length === 0) {
+      throw new Error("Please ensure there is at least 1 task");
+    }
 
-    if (tasks.length === 0)
-      throw new Error('Please ensure there is at least 1 task');
-
-    tasks.map(task => {
+    tasks.map((task) => {
       this.content += `- [] ${task}\n`;
     });
 
-    this.content += '\n'
+    this.content += "\n";
 
     return this;
   }
@@ -113,20 +122,23 @@ export class Markdown {
   table(tableContent: any, options: any = {}): this {
     let table = tableBuilder(tableContent, options);
 
-    this.content += table + '\n\n';
+    this.content += table + "\n\n";
     return this;
   }
 
   /**
   * Adds a markdown horizontal rule
   */
-  horizontalRule(style: string = '---'): this {
-    const markdownHorizontalRuleCharacters = ['---', '***', '___']
+  horizontalRule(style: string = "---"): this {
+    const markdownHorizontalRuleCharacters = ["---", "***", "___"];
 
-    if (!markdownHorizontalRuleCharacters.includes(style))
-      throw new Error('Please use the correct markdown characters for horizontal rules');
+    if (!markdownHorizontalRuleCharacters.includes(style)) {
+      throw new Error(
+        "Please use the correct markdown characters for horizontal rules",
+      );
+    }
 
-    this.content += `${style}\n\n`
+    this.content += `${style}\n\n`;
     return this;
   }
 

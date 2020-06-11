@@ -12,11 +12,12 @@ export function inlineCode(code: string): string {
 * @param style The style you wish to use for italics defaults to `_`
 * @returns {string} A string value with italic markdown characters on both sides
 */
-export function italics(text: string, style: string = '_'): string {
-  const markdownItalicCharacters = ['_', '*'];
+export function italics(text: string, style: string = "_"): string {
+  const markdownItalicCharacters = ["_", "*"];
 
-  if (!markdownItalicCharacters.includes(style))
-    throw new Error('Please use the correct markdown characters');
+  if (!markdownItalicCharacters.includes(style)) {
+    throw new Error("Please use the correct markdown characters");
+  }
 
   return style + text + style;
 }
@@ -27,11 +28,12 @@ export function italics(text: string, style: string = '_'): string {
 * @param style The style you wish to use for bold defaults to `**`
 * @returns {string} A string value with bold markdown characters on both sides
 */
-export function bold(text: string, style: string = '**'): string {
-  const markdownBoldCharacters = ['**', '__'];
+export function bold(text: string, style: string = "**"): string {
+  const markdownBoldCharacters = ["**", "__"];
 
-  if (!markdownBoldCharacters.includes(style))
-    throw new Error('Please use the correct markdown characters');
+  if (!markdownBoldCharacters.includes(style)) {
+    throw new Error("Please use the correct markdown characters");
+  }
 
   return style + text + style;
 }
@@ -42,7 +44,7 @@ export function bold(text: string, style: string = '**'): string {
 * @returns {string} A string value with strike markdown characters on both sides
 */
 export function strike(text: string): string {
-  return '~~' + text + '~~';
+  return "~~" + text + "~~";
 }
 
 /**
@@ -52,7 +54,7 @@ export function strike(text: string): string {
 * @returns {string} Markdown block with alt text and a link
 */
 export function link(altText: string, link: string, title?: string): string {
-  return `[${altText}](${link}${title === undefined ? '' : ' ' + title})\n`;
+  return `[${altText}](${link}${title === undefined ? "" : " " + title})\n`;
 }
 
 /**
@@ -61,6 +63,10 @@ export function link(altText: string, link: string, title?: string): string {
 * @param link Link to the image
 * @returns {string} Markdown block with alt text and image link
 */
-export function image(altText: string, imageLink: string, title?: string): string {
+export function image(
+  altText: string,
+  imageLink: string,
+  title?: string,
+): string {
   return `!${link(altText, imageLink, title)}`;
 }

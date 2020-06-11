@@ -1,70 +1,73 @@
-import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
+import {
+  assertEquals,
+  assertThrows,
+} from "https://deno.land/std/testing/asserts.ts";
 import { Markdown, italics, bold, strike, image, inlineCode } from "../mod.ts";
 
 //Inline code tests
-Deno.test('Generates a block of inline code', () => {
+Deno.test("Generates a block of inline code", () => {
   //Arrange
-  const content = inlineCode("var denoIsCool = true")
+  const content = inlineCode("var denoIsCool = true");
 
   //Assert
-  assertEquals(content, '`var denoIsCool = true`');
+  assertEquals(content, "`var denoIsCool = true`");
 });
 
 //Italics tests
-Deno.test('Generates a string with italics syntax using the defaults', () => {
+Deno.test("Generates a string with italics syntax using the defaults", () => {
   //Arrange
-  const content = italics("I am in italics")
+  const content = italics("I am in italics");
 
   //Assert
-  assertEquals(content, '_I am in italics_');
+  assertEquals(content, "_I am in italics_");
 });
 
-Deno.test('Generates a string with italics syntax using the * character', () => {
+Deno.test("Generates a string with italics syntax using the * character", () => {
   //Arrange
-  const content = italics("I am in italics", '*')
+  const content = italics("I am in italics", "*");
 
   //Assert
-  assertEquals(content, '*I am in italics*');
+  assertEquals(content, "*I am in italics*");
 });
 
-Deno.test('Throws an error if an invalid character is supplied', () => {
+Deno.test("Throws an error if an invalid character is supplied", () => {
   //Assert
-  assertThrows(() => italics("I am in italics", '('));
+  assertThrows(() => italics("I am in italics", "("));
 });
 
-Deno.test('Generates an italic string inline with a paragraph tag', () => {
+Deno.test("Generates an italic string inline with a paragraph tag", () => {
   //Arrange
   var markdown = new Markdown();
   markdown
-    .paragraph("This is " + italics("inline", '*') + " italics");
+    .paragraph("This is " + italics("inline", "*") + " italics");
 
   //Assert
   assertEquals(markdown.content, `This is *inline* italics\n\n`);
 });
 
 //Bold tests
-Deno.test('Generates a string with bold syntax using the defaults', () => {
+Deno.test("Generates a string with bold syntax using the defaults", () => {
   //Arrange
-  const content = bold("I am in bold")
+  const content = bold("I am in bold");
 
   //Assert
-  assertEquals(content, '**I am in bold**');
+  assertEquals(content, "**I am in bold**");
 });
 
-Deno.test('Generates a string with bold syntax using the __ character', () => {
+Deno.test("Generates a string with bold syntax using the __ character", () => {
   //Arrange
-  const content = bold("I am in bold", '__')
+  const content = bold("I am in bold", "__");
 
   //Assert
-  assertEquals(content, '__I am in bold__');
+  assertEquals(content, "__I am in bold__");
 });
 
-Deno.test('Throws an error if an invalid character is supplied', () => {
+Deno.test("Throws an error if an invalid character is supplied", () => {
   //Assert
-  assertThrows(() => bold("I am in bold", '*_*'));
+  assertThrows(() => bold("I am in bold", "*_*"));
 });
 
-Deno.test('Generates an bold string inline with a paragraph tag', () => {
+Deno.test("Generates an bold string inline with a paragraph tag", () => {
   //Arrange
   var markdown = new Markdown();
   markdown
@@ -75,15 +78,15 @@ Deno.test('Generates an bold string inline with a paragraph tag', () => {
 });
 
 //Strike tests
-Deno.test('Generates a string with a strike through it', () => {
+Deno.test("Generates a string with a strike through it", () => {
   //Arrange
-  const content = strike("strike")
+  const content = strike("strike");
 
   //Assert
-  assertEquals(content, '~~strike~~');
+  assertEquals(content, "~~strike~~");
 });
 
-Deno.test('Generates an strike inline with a paragraph tag', () => {
+Deno.test("Generates an strike inline with a paragraph tag", () => {
   //Arrange
   var markdown = new Markdown();
   markdown
@@ -94,35 +97,35 @@ Deno.test('Generates an strike inline with a paragraph tag', () => {
 });
 
 //Image tests
-Deno.test('Generates a image block with inline style and no title', () => {
+Deno.test("Generates a image block with inline style and no title", () => {
   //Arrange
-  var content = image('my image', 'https://link.png')
+  var content = image("my image", "https://link.png");
 
   //Assert
-  assertEquals(content, '![my image](https://link.png)\n');
+  assertEquals(content, "![my image](https://link.png)\n");
 });
 
-Deno.test('Generates a image block with inline style and a title', () => {
+Deno.test("Generates a image block with inline style and a title", () => {
   //Arrange
-  var content = image('my image', 'https://link.png', 'My Title')
+  var content = image("my image", "https://link.png", "My Title");
 
   //Assert
-  assertEquals(content, '![my image](https://link.png My Title)\n');
+  assertEquals(content, "![my image](https://link.png My Title)\n");
 });
 
 //Link tests
-Deno.test('Generates a link block with inline style and no title', () => {
+Deno.test("Generates a link block with inline style and no title", () => {
   //Arrange
-  var content = image('my link', 'https://link')
+  var content = image("my link", "https://link");
 
   //Assert
-  assertEquals(content, '![my link](https://link)\n');
+  assertEquals(content, "![my link](https://link)\n");
 });
 
-Deno.test('Generates a link block with inline style and a title', () => {
+Deno.test("Generates a link block with inline style and a title", () => {
   //Arrange
-  var content = image('my link', 'https://link', 'My Title')
+  var content = image("my link", "https://link", "My Title");
 
   //Assert
-  assertEquals(content, '![my link](https://link My Title)\n');
+  assertEquals(content, "![my link](https://link My Title)\n");
 });

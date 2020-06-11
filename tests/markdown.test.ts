@@ -1,202 +1,216 @@
-import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
-import { Markdown, ListTypes } from '../mod.ts';
+import {
+  assertEquals,
+  assertThrows,
+} from "https://deno.land/std/testing/asserts.ts";
+import { Markdown, ListTypes } from "../mod.ts";
 
 //Header tests
-Deno.test('Generates a string with markdown header', () => {
+Deno.test("Generates a string with markdown header", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
-  markdown.header('Test Header', 1);
+  markdown.header("Test Header", 1);
 
   //Assert
-  assertEquals(markdown.content, '# Test Header\n\n',);
+  assertEquals(markdown.content, "# Test Header\n\n");
 });
 
-Deno.test('Throws an error if a value greater than 6 is supplied', () => {
+Deno.test("Throws an error if a value greater than 6 is supplied", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Assert
-  assertThrows(() => markdown.header('Test Header', 7));
+  assertThrows(() => markdown.header("Test Header", 7));
 });
 
-//List tests 
-Deno.test('Generates an unordered list', () => {
-  //Arrange
-  let markdown = new Markdown();
-
-  //Act
-  markdown.list(['Item 1', 'Item 2']);
-
-  //Assert
-  assertEquals(markdown.content, '- Item 1\n- Item 2\n\n');
-});
-
-Deno.test('Generates an unordered list using the + character', () => {
+//List tests
+Deno.test("Generates an unordered list", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
-  markdown.list(['Item 1', 'Item 2'], ListTypes.UnOrdered, '+');
+  markdown.list(["Item 1", "Item 2"]);
 
   //Assert
-  assertEquals(markdown.content, '+ Item 1\n+ Item 2\n\n');
+  assertEquals(markdown.content, "- Item 1\n- Item 2\n\n");
 });
 
-Deno.test('Generates an unordered list using the * character', () => {
+Deno.test("Generates an unordered list using the + character", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
-  markdown.list(['Item 1', 'Item 2'], ListTypes.UnOrdered, '*');
+  markdown.list(["Item 1", "Item 2"], ListTypes.UnOrdered, "+");
 
   //Assert
-  assertEquals(markdown.content, '* Item 1\n* Item 2\n\n');
+  assertEquals(markdown.content, "+ Item 1\n+ Item 2\n\n");
 });
 
-Deno.test('Throws an error when an invalid character  is supplied', () => {
-  //Arrange
-  let markdown = new Markdown();
-
-  //Assert
-  assertThrows(() => markdown.list(['Item 1', 'Item 2'], ListTypes.UnOrdered, '('));
-});
-
-Deno.test('Generates an ordered list', () => {
+Deno.test("Generates an unordered list using the * character", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
-  markdown.list(['Item 1', 'Item 2'], ListTypes.Ordered);
+  markdown.list(["Item 1", "Item 2"], ListTypes.UnOrdered, "*");
 
   //Assert
-  assertEquals(markdown.content, '1. Item 1\n2. Item 2\n\n');
+  assertEquals(markdown.content, "* Item 1\n* Item 2\n\n");
 });
 
-Deno.test('Generates an ordered sub list', () => {
+Deno.test("Throws an error when an invalid character  is supplied", () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Assert
+  assertThrows(() =>
+    markdown.list(["Item 1", "Item 2"], ListTypes.UnOrdered, "(")
+  );
+});
+
+Deno.test("Generates an ordered list", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
-  markdown.list(['Item 1', 'Item 2'], ListTypes.Ordered, undefined, true);
+  markdown.list(["Item 1", "Item 2"], ListTypes.Ordered);
 
   //Assert
-  assertEquals(markdown.content, '\t1. Item 1\n\t2. Item 2\n\n');
+  assertEquals(markdown.content, "1. Item 1\n2. Item 2\n\n");
 });
 
-Deno.test('Generates an unordered sub list', () => {
+Deno.test("Generates an ordered sub list", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
-  markdown.list(['Item 1', 'Item 2'], ListTypes.UnOrdered, '*', true);
+  markdown.list(["Item 1", "Item 2"], ListTypes.Ordered, undefined, true);
 
   //Assert
-  assertEquals(markdown.content, '\t* Item 1\n\t* Item 2\n\n');
+  assertEquals(markdown.content, "\t1. Item 1\n\t2. Item 2\n\n");
+});
+
+Deno.test("Generates an unordered sub list", () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown.list(["Item 1", "Item 2"], ListTypes.UnOrdered, "*", true);
+
+  //Assert
+  assertEquals(markdown.content, "\t* Item 1\n\t* Item 2\n\n");
 });
 
 //Chaining tests
-Deno.test('Test chaining', () => {
+Deno.test("Test chaining", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
   markdown
-    .header('Header', 1)
-    .list(['Item 1', 'Item 2'], ListTypes.Ordered);
+    .header("Header", 1)
+    .list(["Item 1", "Item 2"], ListTypes.Ordered);
 
   //Assert
-  assertEquals(markdown.content, '# Header\n\n1. Item 1\n2. Item 2\n\n');
+  assertEquals(markdown.content, "# Header\n\n1. Item 1\n2. Item 2\n\n");
 });
 
 //Quote  tests
-Deno.test('Generate a quoted string', () => {
+Deno.test("Generate a quoted string", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
-  markdown.quote('My Quote');
+  markdown.quote("My Quote");
 
   //Assert
-  assertEquals(markdown.content, '> My Quote\n');
+  assertEquals(markdown.content, "> My Quote\n");
 });
 
-Deno.test('Generate a nested quote', () => {
+Deno.test("Generate a nested quote", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
   markdown
-    .quote('My Quote')
-    .quote('Nested quote', true);
+    .quote("My Quote")
+    .quote("Nested quote", true);
 
   //Assert
-  assertEquals(markdown.content, '> My Quote\n>> Nested quote\n');
+  assertEquals(markdown.content, "> My Quote\n>> Nested quote\n");
 });
 
 //Paragraph tests
-Deno.test('Generates a paragraph of text after the header', () => {
+Deno.test("Generates a paragraph of text after the header", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
   markdown
-    .header('My Header', 1)
-    .paragraph('This is a paragraph of text under the header');
+    .header("My Header", 1)
+    .paragraph("This is a paragraph of text under the header");
 
   //Assert
-  assertEquals(markdown.content, '# My Header\n\nThis is a paragraph of text under the header\n\n');
+  assertEquals(
+    markdown.content,
+    "# My Header\n\nThis is a paragraph of text under the header\n\n",
+  );
 });
 
 //Code block tests
-Deno.test('Generates a code block with js highlighting', () => {
+Deno.test("Generates a code block with js highlighting", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
-  markdown.codeBlock('console.log(\'Hello World\')', 'javascript')
+  markdown.codeBlock("console.log('Hello World')", "javascript");
 
   //Assert
-  assertEquals(markdown.content, '```javascript\nconsole.log(\'Hello World\')\n```\n\n');
+  assertEquals(
+    markdown.content,
+    "```javascript\nconsole.log('Hello World')\n```\n\n",
+  );
 });
 
 //Task list tests
-Deno.test('Generates a task list', () => {
+Deno.test("Generates a task list", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
   markdown
-    .taskList(['Task 1', 'Task 2']);
+    .taskList(["Task 1", "Task 2"]);
 
   //Assert
-  assertEquals(markdown.content, '- [] Task 1\n- [] Task 2\n\n');
+  assertEquals(markdown.content, "- [] Task 1\n- [] Task 2\n\n");
 });
 
 //Table tests
-Deno.test('Generates table with no options', () => {
+Deno.test("Generates table with no options", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
   markdown
     .table([
-      ['Branch', 'Commit'],
-      ['master', '0123456789abcdef'],
-      ['staging', 'fedcba9876543210']
+      ["Branch", "Commit"],
+      ["master", "0123456789abcdef"],
+      ["staging", "fedcba9876543210"],
     ]);
 
   //Assert
-  assertEquals(markdown.content, `| Branch  | Commit           |
+  assertEquals(
+    markdown.content,
+    `| Branch  | Commit           |
 | ------- | ---------------- |
 | master  | 0123456789abcdef |
 | staging | fedcba9876543210 |\n
-`);
+`,
+  );
 });
 
 //Horizontal rule tests
-Deno.test('Generates a horizontal rule using the defaults', () => {
+Deno.test("Generates a horizontal rule using the defaults", () => {
   //Arrange
   let markdown = new Markdown();
 
@@ -205,30 +219,29 @@ Deno.test('Generates a horizontal rule using the defaults', () => {
     .horizontalRule();
 
   //Assert
-  assertEquals(markdown.content, '---\n\n');
+  assertEquals(markdown.content, "---\n\n");
 });
 
-Deno.test('Generates a horizontal rule using the *** syntax', () => {
+Deno.test("Generates a horizontal rule using the *** syntax", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
   markdown
-    .horizontalRule('***');
+    .horizontalRule("***");
 
   //Assert
-  assertEquals(markdown.content, '***\n\n');
+  assertEquals(markdown.content, "***\n\n");
 });
 
-Deno.test('Generates a horizontal rule using the ___ syntax', () => {
+Deno.test("Generates a horizontal rule using the ___ syntax", () => {
   //Arrange
   let markdown = new Markdown();
 
   //Act
   markdown
-    .horizontalRule('___');
+    .horizontalRule("___");
 
   //Assert
-  assertEquals(markdown.content, '___\n\n');
+  assertEquals(markdown.content, "___\n\n");
 });
-
