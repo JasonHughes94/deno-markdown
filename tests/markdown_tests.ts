@@ -1,6 +1,7 @@
 import { assertEquals, assertThrows } from "https://deno.land/std/testing/asserts.ts";
 import { Markdown, ListTypes } from '../mod.ts';
 
+//Header tests
 Deno.test('Generates a string with markdown header', () => {
   //Arrange
   let markdown = new Markdown();
@@ -20,6 +21,7 @@ Deno.test('Throws an error if a value greater than 6 is supplied', () => {
   assertThrows(() => markdown.header('Test Header', 7));
 });
 
+//List tests 
 Deno.test('Generates an unordered list', () => {
   //Arrange
   let markdown = new Markdown();
@@ -72,6 +74,7 @@ Deno.test('Generates an ordered list', () => {
   assertEquals(markdown.content, '1. Item 1\n2. Item 2\n\n');
 });
 
+//Chaining tests
 Deno.test('Test chaining', () => {
   //Arrange
   let markdown = new Markdown();
@@ -85,6 +88,7 @@ Deno.test('Test chaining', () => {
   assertEquals(markdown.content, '# Header\n\n1. Item 1\n2. Item 2\n\n');
 });
 
+//Quote  tests
 Deno.test('Generate a quoted string', () => {
   //Arrange
   let markdown = new Markdown();
@@ -93,9 +97,23 @@ Deno.test('Generate a quoted string', () => {
   markdown.quote('My Quote');
 
   //Assert
-  assertEquals(markdown.content, '> My Quote\n\n');
+  assertEquals(markdown.content, '> My Quote\n');
 });
 
+Deno.test('Generate a nested quote', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown
+    .quote('My Quote')
+    .quote('Nested quote', true);
+
+  //Assert
+  assertEquals(markdown.content, '> My Quote\n>> Nested quote\n');
+});
+
+//Paragraph tests
 Deno.test('Generates a paragraph of text after the header', () => {
   //Arrange
   let markdown = new Markdown();
@@ -109,6 +127,7 @@ Deno.test('Generates a paragraph of text after the header', () => {
   assertEquals(markdown.content, '# My Header\n\nThis is a paragraph of text under the header\n\n');
 });
 
+//Code block tests
 Deno.test('Generates a code block with js highlighting', () => {
   //Arrange
   let markdown = new Markdown();
@@ -120,7 +139,8 @@ Deno.test('Generates a code block with js highlighting', () => {
   assertEquals(markdown.content, '```javascript\nconsole.log(\'Hello World\')\n```\n\n');
 });
 
-Deno.test('Generates a code block with js highlighting', () => {
+//Task list tests
+Deno.test('Generates a task list', () => {
   //Arrange
   let markdown = new Markdown();
 
@@ -132,6 +152,7 @@ Deno.test('Generates a code block with js highlighting', () => {
   assertEquals(markdown.content, '- [] Task 1\n- [] Task 2\n\n');
 });
 
+//Table tests
 Deno.test('Generates table with no options', () => {
   //Arrange
   let markdown = new Markdown();
@@ -150,4 +171,17 @@ Deno.test('Generates table with no options', () => {
 | master  | 0123456789abcdef |
 | staging | fedcba9876543210 |\n
 `);
+});
+
+//Horizontal rule tests
+Deno.test('Generates a code block with js highlighting', () => {
+  //Arrange
+  let markdown = new Markdown();
+
+  //Act
+  markdown
+    .horizontalRule();
+
+  //Assert
+  assertEquals(markdown.content, '---\n\n');
 });

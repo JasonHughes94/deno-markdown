@@ -64,8 +64,8 @@ export class Markdown {
   * Adds a markdown quote to the content
   * @param text content you wish to be quoted
   */
-  quote(text: string): this {
-    this.content += `> ${text}\n\n`;
+  quote(text: string, nested: boolean = false): this {
+    nested ? this.content += `>> ${text}\n` : this.content += `> ${text}\n`;
     return this;
   }
 
@@ -116,6 +116,14 @@ export class Markdown {
     var table = tableBuilder(tableContent, options);
 
     this.content += table + '\n\n';
+    return this;
+  }
+
+  /**
+  * Adds a markdown horizontal rule
+  */
+  horizontalRule(): this {
+    this.content += '---\n\n'
     return this;
   }
 
