@@ -1,4 +1,11 @@
-import { Markdown, italics, bold, strike, image, inlineCode } from "https://deno.land/x/deno_markdown/mod.ts";
+import {
+  Markdown,
+  italics,
+  bold,
+  strike,
+  image,
+  inlineCode,
+} from "https://deno.land/x/deno_markdown/mod.ts";
 
 //Inline extensions
 var markdown = new Markdown();

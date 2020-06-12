@@ -38,7 +38,6 @@ export class Markdown {
     subList?: boolean,
   ): this {
     if (listType === ListTypes.Ordered) {
-
       textArray.map((item, index) => {
         this.content += `${subList ? "\t" : ""}${index + 1}. ${item}\n`;
       });
