@@ -35,7 +35,7 @@ await markdown
 
 ### Further examples
 
-Please see the files in [the examples folder](./examples/);
+Please see the files in [the examples folder](./examples/) or take a look at the [wiki](https://github.com/JasonHughes94/deno-markdown/wiki)
 
 ## Running the tests
 
