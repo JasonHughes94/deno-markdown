@@ -56,7 +56,7 @@ export function strike(text: string): string {
 export function link(altText: string, link: string, title?: string): string {
   return `[${altText}](${link}${
     title === undefined ? "" : ' "' + title + '"'
-  })\n`;
+  })`;
 }
 
 /**
