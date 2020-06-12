@@ -38,32 +38,29 @@ export class Markdown {
     subList?: boolean,
   ): this {
     if (listType === ListTypes.Ordered) {
+
       textArray.map((item, index) => {
-        this.content += `${subList === undefined ? "" : "\t"}${index +
-          1}. ${item}\n`;
+        this.content += `${subList ? "\t" : ""}${index + 1}. ${item}\n`;
       });
 
       this.content += "\n";
-      return this;
-    } else if (listType === ListTypes.UnOrdered) {
-      const unorderedListCharacters = ["-", "+", "*"];
 
-      if (!unorderedListCharacters.includes(character)) {
-        throw new Error(
-          "Please supply a valid markdown character for unordered lists",
-        );
-      }
-
-      textArray.map((item) => {
-        this.content += `${
-          subList === undefined ? "" : "\t"
-        }${character} ${item}\n`;
-      });
-
-      this.content += "\n";
       return this;
     }
 
+    const unorderedListCharacters = ["-", "+", "*"];
+
+    if (!unorderedListCharacters.includes(character)) {
+      throw new Error(
+        "Please supply a valid markdown character for unordered lists",
+      );
+    }
+
+    textArray.map((item) => {
+      this.content += `${subList ? "\t" : ""}${character} ${item}\n`;
+    });
+
+    this.content += "\n";
     return this;
   }
 
