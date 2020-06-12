@@ -1,7 +1,7 @@
-import { Markdown } from "../mod.ts";
+import { Markdown } from "https://deno.land/x/deno_markdown/mod.ts";
 
 let markdown = new Markdown();
 
-markdown
+await markdown
   .quote("My Quote")
   .write("./examples/", "test");
