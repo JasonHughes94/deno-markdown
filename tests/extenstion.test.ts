@@ -102,7 +102,7 @@ Deno.test("Generates a image block with inline style and no title", () => {
   var content = image("my image", "https://link.com/image.png");
 
   //Assert
-  assertEquals(content, "![my image](https://link.com/image.png)\n");
+  assertEquals(content, "![my image](https://link.com/image.png)");
 });
 
 Deno.test("Generates a image block with inline style and a title", () => {
@@ -110,7 +110,7 @@ Deno.test("Generates a image block with inline style and a title", () => {
   var content = image("my image", "https://link.com/image.png", "My Title");
 
   //Assert
-  assertEquals(content, '![my image](https://link.com/image.png "My Title")\n');
+  assertEquals(content, '![my image](https://link.com/image.png "My Title")');
 });
 
 //Link tests
@@ -119,7 +119,7 @@ Deno.test("Generates a link block with inline style and no title", () => {
   var content = image("my link", "https://link.com");
 
   //Assert
-  assertEquals(content, "![my link](https://link.com)\n");
+  assertEquals(content, "![my link](https://link.com)");
 });
 
 Deno.test("Generates a link block with inline style and a title", () => {
@@ -127,5 +127,5 @@ Deno.test("Generates a link block with inline style and a title", () => {
   var content = image("my link", "https://link.com", "My Title");
 
   //Assert
-  assertEquals(content, '![my link](https://link.com "My Title")\n');
+  assertEquals(content, '![my link](https://link.com "My Title")');
 });
