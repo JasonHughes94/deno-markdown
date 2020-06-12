@@ -54,7 +54,9 @@ export function strike(text: string): string {
 * @returns {string} Markdown block with alt text and a link
 */
 export function link(altText: string, link: string, title?: string): string {
-  return `[${altText}](${link}${title === undefined ? "" : " " + title})\n`;
+  return `[${altText}](${link}${
+    title === undefined ? "" : ' "' + title + '"'
+  })\n`;
 }
 
 /**

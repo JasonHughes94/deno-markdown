@@ -99,33 +99,33 @@ Deno.test("Generates an strike inline with a paragraph tag", () => {
 //Image tests
 Deno.test("Generates a image block with inline style and no title", () => {
   //Arrange
-  var content = image("my image", "https://link.png");
+  var content = image("my image", "https://link.com/image.png");
 
   //Assert
-  assertEquals(content, "![my image](https://link.png)\n");
+  assertEquals(content, "![my image](https://link.com/image.png)\n");
 });
 
 Deno.test("Generates a image block with inline style and a title", () => {
   //Arrange
-  var content = image("my image", "https://link.png", "My Title");
+  var content = image("my image", "https://link.com/image.png", "My Title");
 
   //Assert
-  assertEquals(content, "![my image](https://link.png My Title)\n");
+  assertEquals(content, '![my image](https://link.com/image.png "My Title")\n');
 });
 
 //Link tests
 Deno.test("Generates a link block with inline style and no title", () => {
   //Arrange
-  var content = image("my link", "https://link");
+  var content = image("my link", "https://link.com");
 
   //Assert
-  assertEquals(content, "![my link](https://link)\n");
+  assertEquals(content, "![my link](https://link.com)\n");
 });
 
 Deno.test("Generates a link block with inline style and a title", () => {
   //Arrange
-  var content = image("my link", "https://link", "My Title");
+  var content = image("my link", "https://link.com", "My Title");
 
   //Assert
-  assertEquals(content, "![my link](https://link My Title)\n");
+  assertEquals(content, '![my link](https://link.com "My Title")\n');
 });
