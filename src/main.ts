@@ -117,7 +117,7 @@ export class Markdown {
   */
   table(tableContent: any, options: any = {}): this {
     let table = tableBuilder(tableContent, options);
-
+    
     this.content += table + "\n\n";
     return this;
   }
@@ -145,10 +145,8 @@ export class Markdown {
   * @param content The content you wish to write to the file. This defaults to the chained content
   */
   async write(path: string, fileName: string, content: string = this.content) {
-    const file = await Deno.create(`${path}${fileName}.md`);
     const encoder = new TextEncoder();
     const data = encoder.encode(content);
-    await Deno.write(file.rid, data); // 11
-    Deno.close(file.rid);
+    await Deno.writeFile(`${path}${fileName}.md`, data)
   }
 }
