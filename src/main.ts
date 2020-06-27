@@ -117,7 +117,7 @@ export class Markdown {
   */
   table(tableContent: any, options: any = {}): this {
     let table = tableBuilder(tableContent, options);
-    
+
     this.content += table + "\n\n";
     return this;
   }
@@ -147,6 +147,6 @@ export class Markdown {
   async write(path: string, fileName: string, content: string = this.content) {
     const encoder = new TextEncoder();
     const data = encoder.encode(content);
-    await Deno.writeFile(`${path}${fileName}.md`, data)
+    await Deno.writeFile(`${path}${fileName}.md`, data);
   }
 }
