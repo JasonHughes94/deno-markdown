@@ -1,11 +1,7 @@
 {
   "name": "@jasonhughes94/deno-markdown",
   "version": "0.0.3",
-  "exports": {
-    "./models": "./src/enums/list_types.ts",
-    "./util/math": "./src/extensions.ts",
-    "./util/canvas-layer": "./src/main.ts"
-  },
+  "exports": "./mod.ts",
   "lock": false,
   "tasks": {
     "test": "deno test -A"
