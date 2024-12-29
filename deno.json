@@ -11,9 +11,5 @@
   },
   "fmt": {
     "semiColons": false
-  },
-  "exclude": [
-    "dist",
-    "./src/table.ts"
-  ]
+  }
 }
