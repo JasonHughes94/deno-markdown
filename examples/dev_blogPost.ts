@@ -1,6 +1,10 @@
-import { Markdown, bold, link } from "https://deno.land/x/deno_markdown/mod.ts";
+import {
+  bold,
+  link,
+  Markdown,
+} from "https://deno.land/x/deno_markdown@v0.2/mod.ts"
 
-let markdown = new Markdown();
+const markdown = new Markdown()
 
 await markdown
   .header("Why Deno?", 2)
@@ -118,4 +122,4 @@ You can inline extensions like **bold** or _italics_
     ),
   )
   .paragraph(bold("Thanks for reading!"))
-  .write("./examples/", "dev_blogPost");
+  .write("./examples/", "dev_blogPost")
