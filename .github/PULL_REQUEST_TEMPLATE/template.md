@@ -2,7 +2,7 @@
 - [ ] The commit message follows our guidelines
 - [ ] Tests for the changes have been added (for bug fixes/features)
 - [ ] Docs have been added / updated (for bug fixes / features)
-- [ ] Have you checked to ensure there aren't other open [Pull Requests](../../../pulls) for the same update/change?
+- [ ] Have you checked to ensure there aren't other open [Pull Requests](https://github.com/JasonHughes94/deno-markdown/pulls) for the same update/change?
 
 
 * **What kind of change does this PR introduce?** (Bug fix, feature, docs update, ...)
