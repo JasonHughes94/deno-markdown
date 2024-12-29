@@ -1,0 +1,19 @@
+{
+  "name": "@jasonhughes94/deno-markdown",
+  "version": "0.0.3",
+  "exports": "./mod.ts",
+  "lock": false,
+  "tasks": {
+    "test": "deno test -A"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@^1.0.0"
+  },
+  "fmt": {
+    "semiColons": false
+  },
+  "exclude": [
+    "dist",
+    "./src/table.ts"
+  ]
+}
